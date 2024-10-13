@@ -36,11 +36,6 @@ jobs:
           ls -al .scannerwork
           cat .scannerwork/report-task.txt || echo "report-task.txt not found"
 
-      - name: Build Docker image
-        run: |
-          docker build -t $DOCKER_IMAGE:${{ github.sha }} .
-          docker tag $DOCKER_IMAGE:${{ github.sha }} $DOCKER_IMAGE:latest
-
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2

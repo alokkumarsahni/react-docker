@@ -37,7 +37,7 @@ spec:
 apiVersion: v1
 kind: Ingress
 metadata:
-  name: react-pr-ingress
+  name: react-pr
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:

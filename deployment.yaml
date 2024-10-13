@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: react-pr
+  labels:
+    app: react-pr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: react-pr
+  template:
+    metadata:
+      labels:
+        app: react-pr
+    spec:
+      containers:
+        - name: react-pr
+          image: 783764619143.dkr.ecr.ap-southeast-2.amazonaws.com/ecr-2:latest
+          ports:
+            - containerPort: 5000  # Adjust based on your app's listening port        
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: react-pr
+spec:
+  type: LoadBalancer
+  selector:
+    app: react-pr
+  ports:
+    - port: 5000         # Port that the service will expose
+      targetPort: 5000   # Port on the container
+      nodePort: 31010    # NodePort (optional, Kubernetes will assign one if not specified)

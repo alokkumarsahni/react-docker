@@ -1,4 +1,4 @@
-name: New React App
+name: Mock React App
 on:
   push:
     branches:
@@ -43,13 +43,13 @@ jobs:
       - name: Build, tag, and push docker image to Amazon ECR
         env:
           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          REPOSITORY: ecr-react
+          REPOSITORY: mock-react
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker build -t ecr-react .
-          docker tag ecr-react:latest 783764619143.dkr.ecr.us-east-1.amazonaws.com/ecr-react:latest
-          docker push 783764619143.dkr.ecr.us-east-1.amazonaws.com/ecr-react:latest
-      
+          docker build -t mock-react .
+          docker tag mock-react:latest 783764619143.dkr.ecr.us-east-1.amazonaws.com/mock-react:latest
+          docker push 783764619143.dkr.ecr.us-east-1.amazonaws.com/mock-react:latest
+          
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -64,7 +64,7 @@ jobs:
         id: install
         
       - name: Update kube config
-        run: aws eks update-kubeconfig --region us-east-1 --name hackathon-react
+        run: aws eks update-kubeconfig --region us-east-1 --name mock
       
       - name: Deploy to EKS
         run: |

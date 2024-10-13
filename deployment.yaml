@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: react-pr
-          image: 783764619143.dkr.ecr.ap-southeast-2.amazonaws.com/ecr-2:latest
+          image: 783764619143.dkr.ecr.us-east-1.amazonaws.com/ecr-react:latest
           ports:
             - containerPort: 5000  # Adjust based on your app's listening port        
 ---

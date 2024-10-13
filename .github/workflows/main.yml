@@ -52,6 +52,10 @@ jobs:
           REPOSITORY: mock-react
         run: |
           docker build -t mock-react .
+          
+      - name: Scan Docker image with Trivy for any vulnerabilities
+        run: |
+          docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy image --exit-code 1 --severity HIGH,CRITICAL mock-react:latest
 
       # Step 4: Tag Docker image (latest only)
       - name: Tag Docker image

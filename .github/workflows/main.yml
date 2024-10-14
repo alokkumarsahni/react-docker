@@ -51,7 +51,7 @@ jobs:
           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           REPOSITORY: mock-erc-repo
         run: |
-          docker build -t mock-react .
+          docker build -t mock-ecr-repo .
           
      # - name: Scan Docker image with Trivy for any vulnerabilities
       #  run: |
@@ -64,7 +64,7 @@ jobs:
           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           REPOSITORY: mock-erc-repo
         run: |
-          docker tag mock-react:latest 783764619143.dkr.ecr.us-east-1.amazonaws.com/mock-react:latest
+          docker tag mock-ecr-repo:latest 783764619143.dkr.ecr.us-east-1.amazonaws.com/mock-ecr-repo:latest
 
       # Step 5: Push Docker image to Amazon ECR (latest only)
       - name: Push Docker image to Amazon ECR
@@ -72,7 +72,7 @@ jobs:
           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           REPOSITORY: mock-erc-repo
         run: |
-          docker push 783764619143.dkr.ecr.us-east-1.amazonaws.com/mock-react:latest
+          docker push 783764619143.dkr.ecr.us-east-1.amazonaws.com/mock-ecr-repo:latest
       ###     
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1

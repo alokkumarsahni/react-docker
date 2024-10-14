@@ -1,33 +1,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mock-react-pr
+  name: mock-react-final
   labels:
-    app: mock-react-pr
+    app: mock-react-final
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mock-react-pr
+      app: mock-react-final
   template:
     metadata:
       labels:
-        app: mock-react-pr
+        app: mock-react-final
     spec:
       containers:
-        - name: mock-react-pr
-          image: 783764619143.dkr.ecr.us-east-1.amazonaws.com/mock-react:latest
+        - name: mock-react-final
+          image: 783764619143.dkr.ecr.us-east-1.amazonaws.com/mock-ecr-repo:latest
           ports:
             - containerPort: 3000  # Adjust based on your app's listening port        
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: mock-react-pr
+  name: mock-react-final
 spec:
   type: LoadBalancer
   selector:
-    app: mock-react-pr
+    app: mock-react-final
   ports:
     - port: 3000         # Port that the service will expose
       targetPort: 3000   # Port on the container

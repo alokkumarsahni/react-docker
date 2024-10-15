@@ -1,4 +1,4 @@
-name: Mock React App
+name: New React App
 on:
   push:
     branches:
